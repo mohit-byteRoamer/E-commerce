@@ -1,0 +1,166 @@
+version: '3.9'
+
+services:
+
+  client:
+    build:
+      context: "./client"
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    container_name: client-container
+    environment:
+      - WATCHPACK_POLLING=true
+    networks:
+      - mern-stack-networks
+    volumes:
+      - ./client:/app
+    # depends_on: 
+    #   - server
+
+  # server:
+  #   build: 
+  #     context: "./server"
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "3001:3001"
+  #   container_name: server-container
+  #   networks:
+  #     - mern-stack-networks
+  #   volumes:
+  #     - ./server:/user/src/app
+  #   depends_on:
+  #     - postgres
+
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+    container_name: db-container
+    networks:
+      - mern-stack-networks
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    restart: always
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: password
+    ports:
+      - "8080:80"
+    container_name: pgadmin-container
+    networks:
+      - mern-stack-networks
+ 
+networks:
+  mern-stack-networks:
+
+volumes:
+  pgdata:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# version: '3.9'
+
+# services:
+
+#   client:
+
+#     build:
+#       context: "./client"
+#       dockerfile: Dockerfile
+#     ports:
+#       - 3000:3000
+#     container_name: client-container
+#     environment:
+#       - WATCHPACK_POLLING=true
+#     networks:
+#       -mern-stack-networks
+#     volumes:
+#       -./client: /app
+#     depends_on: 
+#       - server
+   
+#   server:
+
+#     build: 
+#       context: "./server"
+#       dockerfile: Dockerfile
+#     ports:
+#       -3001:3001
+#     container_name: server-container
+#     networks:
+#       -mern-stack-networks
+#     volumes:
+#       -./server: /app
+#     depends_on:
+#       - postgres
+    
+    
+
+
+#   postgres:
+#     image: postgres:latest
+#     environment:
+#       POSTGRES_USER: root
+#       POSTGRES_PASSWORD: password
+#       POSTGRES_DB: postgres
+#     ports:
+#       - 5432:5432
+#     container_name: db-container
+#     networks:
+#       -mern-stack-networks
+#     volumes:
+#       - pgdata:/var/lib/postgresql/data
+#     restart: always
+
+#   pgadmin:
+#     image: dpage/pgadmin4
+#     environment:
+#       PGADMIN_DEFAULT_EMAIL: admin@example.com
+#       PGADMIN_DEFAULT_PASSWORD: password
+#     ports:
+#       - 8080:80
+#     container_name: pgadmin-container
+#     networks:
+#       -mern-stack-networks
+#     # restart: always
+
+# volumes:
+#   pgdata:
