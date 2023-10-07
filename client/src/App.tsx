@@ -1,12 +1,13 @@
-import CategoryFilter from "./Components/Widgets/category-filters";
-import NavBar from "./Components/Widgets/navbar";
+import { BrowserRouter as Router } from "react-router-dom";
+import AppRoutes from "./Routes/appRoutes";
 
 function App() {
   return (
-    <div >
-      <NavBar/>
-      <CategoryFilter />
-    </div>
+    <Router>
+      <div className="App">
+        <AppRoutes />
+      </div>
+    </Router>
   );
 }
 
